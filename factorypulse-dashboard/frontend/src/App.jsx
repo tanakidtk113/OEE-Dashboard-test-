@@ -12,33 +12,38 @@ function App() {
   const [downtime, setDowntime] = useState(null);
 
   useEffect(() => {
-    getKPI()
-      .then(res => {
-        console.log("KPI:", res.data);
-        setKPI(res.data);
-      })
-      .catch(err => console.error("KPI error:", err));
+    const wakeUpServer = async () => {
+      try {
+        await fetch("https://oee-dashboard-test.onrender.com/kpi");
+        console.log("Server ready");
+      } catch (e) {
+        console.log("Wake failed, trying anyway...");
+      }
 
-    getEfficiency()
-      .then(res => {
-        console.log("EFF:", res.data);
-        setEfficiency(res.data);
-      })
-      .catch(err => console.error("EFF error:", err));
+      setTimeout(() => {
+        loadData();
+      }, 3000);
+    };
 
-    getOutput()
-      .then(res => {
-        console.log("OUTPUT:", res.data);
-        setOutput(res.data);
-      })
-      .catch(err => console.error("OUTPUT error:", err));
+    const loadData = () => {
+      getKPI()
+        .then(res => setKPI(res.data))
+        .catch(err => console.error("KPI error:", err));
 
-    getDowntime()
-      .then(res => {
-        console.log("DOWN:", res.data);
-        setDowntime(res.data);
-      })
-      .catch(err => console.error("DOWN error:", err));
+      getEfficiency()
+        .then(res => setEfficiency(res.data))
+        .catch(err => console.error("EFF error:", err));
+
+      getOutput()
+        .then(res => setOutput(res.data))
+        .catch(err => console.error("OUTPUT error:", err));
+
+      getDowntime()
+        .then(res => setDowntime(res.data))
+        .catch(err => console.error("DOWN error:", err));
+    };
+
+    wakeUpServer();
   }, []);
 
   if (!kpi || !efficiency || !output || !downtime) {
