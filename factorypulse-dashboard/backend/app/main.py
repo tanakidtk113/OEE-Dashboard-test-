@@ -5,7 +5,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://oee-dashboard-test-gh055dbvk-tk11.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
