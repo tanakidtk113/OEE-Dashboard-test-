@@ -1,16 +1,27 @@
-# React + Vite
+# โค้ดรัน backend
+1) สร้าง terminal ก่อน
+2) ใส่คำสั่งต่อไปนี้ ทีละคำสั่ง
+3) cd "..........\FactoryPulse – Smart Factory OEE Dashboard\factorypulse-dashboard\backend" **ที่ตัวเองเก็บไฟล์ไว้**
+4) .\venv\Scripts\activate
+5) uvicorn app.main:app --reload
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# โค้ดรัน frontend
+1) สร้าง terminal ก่อน
+2) ใส่คำสั่งต่อไปนี้ ทีละคำสั่ง
+3) cd "..........\FactoryPulse – Smart Factory OEE Dashboard\factorypulse-dashboard\frontend" **ที่ตัวเองเก็บไฟล์ไว้**
+4) npm run dev
 
-Currently, two official plugins are available:
+--------------------------------------------------------------------------------------------------------------------------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Backend Code
+1) Open a terminal
+2) Type the following commands in sequence:
+3) cd "..........\FactoryPulse – Smart Factory OEE Dashboard\factorypulse-dashboard\backend" **(location where the files are saved)**
+4) .\venv\Scripts\activate
+5) uvicorn app.main:app --reload
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Frontend Code
+1) Open a terminal
+2) Type the following commands in sequence:
+3) cd "..........\FactoryPulse – Smart Factory OEE Dashboard\factorypulse-dashboard\frontend" **(location where the files are saved)**
+4) npm run dev
