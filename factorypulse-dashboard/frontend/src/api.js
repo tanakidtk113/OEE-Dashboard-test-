@@ -1,8 +1,15 @@
 import axios from "axios";
 
-const BASE_URL = "https://oee-dashboard-test-1.onrender.com";
+const BASE_URL = "https://oee-dashboard-test.onrender.com";
 
-export const getKPI = () => axios.get(`${BASE_URL}/kpi`);
-export const getEfficiency = () => axios.get(`${BASE_URL}/efficiency`);
-export const getOutput = () => axios.get(`${BASE_URL}/output`);
-export const getDowntime = () => axios.get(`${BASE_URL}/downtime`);
+export const getKPI = () =>
+  axios.get("https://oee-dashboard-test.onrender.com/kpi");
+
+export const getEfficiency = () =>
+  axios.get("https://oee-dashboard-test.onrender.com/efficiency");
+
+export const getOutput = () =>
+  axios.get("https://oee-dashboard-test.onrender.com/output");
+
+export const getDowntime = () =>
+  axios.get("https://oee-dashboard-test.onrender.com/downtime");
