@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Charts from "./Charts";
 import OutputChart from "./OutputChart";
 import DowntimeChart from "./DowntimeChart";
-
 import { getKPI, getEfficiency, getOutput, getDowntime } from "./api";
 
 function App() {
@@ -12,38 +11,37 @@ function App() {
   const [downtime, setDowntime] = useState(null);
 
   useEffect(() => {
-    const wakeUpServer = async () => {
+    const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+    const fetchWithRetry = async (fn, setState) => {
+      for (let i = 0; i < 5; i++) {
+        try {
+          const res = await fn();
+          setState(res.data);
+          return;
+        } catch (err) {
+          console.log("Retry...", i + 1);
+          await delay(2000);
+        }
+      }
+      console.error("Failed after retries");
+    };
+
+    const init = async () => {
       try {
         await fetch("https://oee-dashboard-test.onrender.com/kpi");
-        console.log("Server ready");
-      } catch (e) {
-        console.log("Wake failed, trying anyway...");
-      }
+        console.log("Server warmed ");
+      } catch {}
 
-      setTimeout(() => {
-        loadData();
-      }, 3000);
+      await delay(3000);
+
+      fetchWithRetry(getKPI, setKPI);
+      fetchWithRetry(getEfficiency, setEfficiency);
+      fetchWithRetry(getOutput, setOutput);
+      fetchWithRetry(getDowntime, setDowntime);
     };
 
-    const loadData = () => {
-      getKPI()
-        .then(res => setKPI(res.data))
-        .catch(err => console.error("KPI error:", err));
-
-      getEfficiency()
-        .then(res => setEfficiency(res.data))
-        .catch(err => console.error("EFF error:", err));
-
-      getOutput()
-        .then(res => setOutput(res.data))
-        .catch(err => console.error("OUTPUT error:", err));
-
-      getDowntime()
-        .then(res => setDowntime(res.data))
-        .catch(err => console.error("DOWN error:", err));
-    };
-
-    wakeUpServer();
+    init();
   }, []);
 
   if (!kpi || !efficiency || !output || !downtime) {
