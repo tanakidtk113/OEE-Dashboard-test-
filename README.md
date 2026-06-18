@@ -312,4 +312,5 @@ Backend
 1) Open a terminal
 2) Type the following commands in sequence:
 2.1) cd "..........\FactoryPulse – Smart Factory OEE Dashboard\factorypulse-dashboard\frontend" **(location where the files are saved)**
-2.2) npm run dev
+2.2) npm run dev#   O E E - D a s h b o a r d - t e s t -  
+ 
